@@ -17,5 +17,62 @@
   <section class="events" id="eventos"><div class="section-heading"><div><p class="eyebrow blue"><i></i>AGENDA SCIEM</p><h2>Donde las ideas<br><em>se encuentran.</em></h2></div><p>Descubre nuestras próximas oportunidades para aprender, colaborar y crear impacto.</p></div><div class="event-list"><article class="event"><div class="date"><small>OCT</small><strong>18</strong></div><span class="event-type">TALLER</span><div><h3>De la pregunta clínica al protocolo</h3><p>Campus Villa · Presencial</p></div><a href="#miembros">↗</a></article><article class="event"><div class="date"><small>NOV</small><strong>06</strong></div><span class="event-type">CONVERSATORIO</span><div><h3>Voces que transforman la salud</h3><p>Auditorio principal</p></div><a href="#miembros">↗</a></article><article class="event"><div class="date"><small>NOV</small><strong>22</strong></div><span class="event-type">JORNADA</span><div><h3>SCIEM Research Day 2026</h3><p>Universidad Científica del Sur</p></div><a href="#miembros">↗</a></article></div></section>
   <section class="join" id="miembros"><div><p class="eyebrow"><i></i>TU SIGUIENTE PASO</p><h2>Haz que tu<br>voz tenga <em>ciencia.</em></h2></div><div class="join-side"><p>Encuentra una comunidad para aprender con intención, liderar proyectos y dejar tu propia marca en la medicina.</p><a class="button light" href="mailto:sciem@cientifica.edu.pe">Quiero ser parte →</a></div></section>
   <footer><a class="brand" href="#inicio"><span class="brand-mark">S</span><span>SCIEM <b>UCSUR</b></span></a><p>Sociedad Científica de Estudiantes de Medicina<br>Universidad Científica del Sur · Lima, Perú</p><div><a href="#">Instagram</a><a href="#">Facebook</a><a href="mailto:sciem@cientifica.edu.pe">Correo</a></div></footer>
-</body></html>
+<script src="./config.js"></script>
+<script src="./api.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+
+  console.log("🚀 SCIEM UCSUR iniciado");
+
+  /*
+   * PRUEBA API 1
+   */
+  try {
+
+    const content =
+      await SCIEMApi.content();
+
+    console.log(
+      "✅ CONTENT API FUNCIONANDO:",
+      content
+    );
+
+  } catch (error) {
+
+    console.error(
+      "❌ ERROR CONTENT API:",
+      error
+    );
+
+  }
+
+
+  /*
+   * PRUEBA API 2
+   */
+  try {
+
+    const services =
+      await SCIEMApi.services();
+
+    console.log(
+      "✅ SERVICES API FUNCIONANDO:",
+      services
+    );
+
+  } catch (error) {
+
+    console.error(
+      "❌ ERROR SERVICES API:",
+      error
+    );
+
+  }
+
+});
+</script>
+
+</body>
+</html>
 
