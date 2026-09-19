@@ -1,48 +1,58 @@
-document.addEventListener("DOMContentLoaded", async () => {
-
-  console.log("🚀 SCIEM UCSUR iniciado");
-
-  // ============================
-  // PRUEBA API DE CONTENIDOS
-  // ============================
-  try {
-
-    const content = await SCIEMApi.content();
+document.addEventListener(
+  "DOMContentLoaded",
+  async () => {
 
     console.log(
-      "✅ CONTENT API FUNCIONANDO:",
-      content
+      "🚀 SCIEM UCSUR iniciado"
     );
 
-  } catch (error) {
 
-    console.error(
-      "❌ ERROR CONTENT API:",
-      error
-    );
+    // =========================
+    // SCRIPT A
+    // =========================
+
+    try {
+
+      const respuestaA =
+        await SCIEMApi.scriptA();
+
+      console.log(
+        "✅ SCRIPT A:",
+        respuestaA
+      );
+
+    } catch (error) {
+
+      console.error(
+        "❌ SCRIPT A:",
+        error
+      );
+
+    }
+
+
+    // =========================
+    // SCRIPT B
+    // =========================
+
+    try {
+
+      const respuestaB =
+        await SCIEMApi.scriptB();
+
+      console.log(
+        "✅ SCRIPT B:",
+        respuestaB
+      );
+
+    } catch (error) {
+
+      console.error(
+        "❌ SCRIPT B:",
+        error
+      );
+
+    }
 
   }
-
-
-  // ============================
-  // PRUEBA API DE SERVICIOS
-  // ============================
-  try {
-
-    const services = await SCIEMApi.services();
-
-    console.log(
-      "✅ SERVICES API FUNCIONANDO:",
-      services
-    );
-
-  } catch (error) {
-
-    console.error(
-      "❌ ERROR SERVICES API:",
-      error
-    );
-
-  }
-
-});
+);
