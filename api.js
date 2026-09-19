@@ -7,11 +7,12 @@ class SCIEMApi {
 
     if (!baseUrl) {
       throw new Error(
-        `Servicio API desconocido: ${service}`
+        `Servicio desconocido: ${service}`
       );
     }
 
-    const url = new URL(baseUrl);
+    const url =
+      new URL(baseUrl);
 
     Object.entries(params)
       .forEach(([key, value]) => {
@@ -34,7 +35,7 @@ class SCIEMApi {
     const controller =
       new AbortController();
 
-    const timeout =
+    const timer =
       setTimeout(
         () => controller.abort(),
         SCIEM_CONFIG.TIMEOUT
@@ -44,7 +45,7 @@ class SCIEMApi {
 
       if (SCIEM_CONFIG.DEBUG) {
         console.log(
-          "[SCIEM API]",
+          `🔵 Consultando ${service}:`,
           url.toString()
         );
       }
@@ -63,7 +64,7 @@ class SCIEMApi {
       if (!response.ok) {
 
         throw new Error(
-          `Error HTTP ${response.status}`
+          `HTTP ${response.status}`
         );
 
       }
@@ -71,34 +72,42 @@ class SCIEMApi {
       const text =
         await response.text();
 
-      let data;
+      if (SCIEM_CONFIG.DEBUG) {
 
-      try {
-
-        data =
-          JSON.parse(text);
-
-      } catch {
-
-        console.error(
-          "Respuesta recibida:",
+        console.log(
+          `📦 Respuesta ${service}:`,
           text
-        );
-
-        throw new Error(
-          "Apps Script no devolvió JSON válido."
         );
 
       }
 
-      return data;
+      try {
+
+        return {
+          ok: true,
+          type: "json",
+          data: JSON.parse(text)
+        };
+
+      } catch {
+
+        return {
+          ok: true,
+          type: "text",
+          data: text
+        };
+
+      }
 
     } catch (error) {
 
-      if (error.name === "AbortError") {
+      if (
+        error.name ===
+        "AbortError"
+      ) {
 
         throw new Error(
-          "La solicitud tardó demasiado."
+          "Apps Script tardó demasiado en responder."
         );
 
       }
@@ -107,27 +116,27 @@ class SCIEMApi {
 
     } finally {
 
-      clearTimeout(timeout);
+      clearTimeout(timer);
 
     }
 
   }
 
 
-  static content(params = {}) {
+  static scriptA(params = {}) {
 
     return this.request(
-      "CONTENT",
+      "SCRIPT_A",
       params
     );
 
   }
 
 
-  static services(params = {}) {
+  static scriptB(params = {}) {
 
     return this.request(
-      "SERVICES",
+      "SCRIPT_B",
       params
     );
 
