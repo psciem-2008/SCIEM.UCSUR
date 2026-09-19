@@ -17,68 +17,13 @@
 </footer>
 
 
-<!-- ============================== -->
-<!-- CONEXIÓN SCIEM UCSUR           -->
-<!-- ============================== -->
+<!-- ========================= -->
+<!-- SISTEMA SCIEM UCSUR       -->
+<!-- ========================= -->
 
 <script src="./config.js"></script>
 <script src="./api.js"></script>
-
-<script>
-
-document.addEventListener(
-  "DOMContentLoaded",
-  async () => {
-
-    console.log(
-      "🚀 SCIEM UCSUR iniciado"
-    );
-
-
-    try {
-
-      const content =
-        await SCIEMApi.content();
-
-      console.log(
-        "✅ CONTENT API FUNCIONANDO:",
-        content
-      );
-
-    } catch (error) {
-
-      console.error(
-        "❌ ERROR CONTENT API:",
-        error
-      );
-
-    }
-
-
-    try {
-
-      const services =
-        await SCIEMApi.services();
-
-      console.log(
-        "✅ SERVICES API FUNCIONANDO:",
-        services
-      );
-
-    } catch (error) {
-
-      console.error(
-        "❌ ERROR SERVICES API:",
-        error
-      );
-
-    }
-
-  }
-);
-
-</script>
-
+<script src="./app.js"></script>
 
 </body>
 </html>
